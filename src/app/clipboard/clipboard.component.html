@@ -1,1 +1,41 @@
-<p>clipboard works!</p>
+<main>
+  <mat-form-field style="width: 100%">
+    <mat-label>Clipboard</mat-label>
+    <textarea matInput [ngModel]="textAreaContent" [cdkTextareaAutosize]="true"
+              (keyup)="contentChanged = true" placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+
+  <div *ngIf="contentChanged" style="margin-bottom: 15px">
+    <button mat-raised-button color="warn" (click)="uploadNewContent()">Save</button>
+  </div>
+
+  <div id="buttons-div">
+    <button mat-fab color="warn" (click)="copyToClipboard(textAreaContent)">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+    <button mat-fab color="accent" (click)="cut()">
+      <mat-icon>content_cut</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)="paste()">
+      <mat-icon>content_paste</mat-icon>
+    </button>
+  </div>
+
+  <div style="height: 20px"></div>
+
+  <mat-expansion-panel (opened)="loadHistory()" (closed)="showingHistory = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title *ngIf="!showingHistory">
+        Clipboard History
+      </mat-panel-title>
+      <mat-panel-title *ngIf="showingHistory">
+        Click to copy
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div id="histories">
+      <div id="history-row" *ngFor="let history of clipboardHistory" (click)="copyToClipboard(history)">
+        <p id="history-row-content">{{history}}</p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</main>

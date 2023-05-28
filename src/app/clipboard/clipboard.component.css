@@ -1,0 +1,36 @@
+main{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  max-width: 30em;
+}
+
+#buttons-div{
+  display: flex;
+  gap: 10px;
+}
+
+#histories{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  gap: 7px;
+}
+
+#history-row{
+  background-color: black;
+  color: wheat;
+  border-radius: 3px;
+  display: table;
+  padding: 7px;
+  cursor: pointer;
+}
+
+#history-row-content{
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+  font-size: small;
+}
