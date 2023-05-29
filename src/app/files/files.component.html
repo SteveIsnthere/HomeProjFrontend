@@ -1,0 +1,16 @@
+<h2>File Management</h2>
+
+<div>
+  <input type="file" (change)="onFileSelected($event)" />
+  <button (click)="onUpload()" [disabled]="!selectedFile">Upload</button>
+</div>
+
+<div *ngIf="files.length > 0">
+  <h3>Files:</h3>
+  <ul>
+    <li *ngFor="let file of files">
+      {{ file }}
+      <button (click)="onDownload(file)">Download</button>
+    </li>
+  </ul>
+</div>
