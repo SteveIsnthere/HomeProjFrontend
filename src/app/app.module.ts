@@ -11,11 +11,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatIconModule} from "@angular/material/icon";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { FilesComponent } from './files/files.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClipboardComponent
+    ClipboardComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,27 @@
 <main>
-  <mat-form-field style="width: 100%">
+  <mat-expansion-panel (opened)="loadHistory()" (closed)="showingHistory = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title *ngIf="!showingHistory">
+        Clipboard History
+      </mat-panel-title>
+      <mat-panel-title *ngIf="showingHistory">
+        Click to copy
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div id="histories">
+      <div class="history-row" *ngFor="let history of clipboardHistory" (click)="copyToClipboard(history.content)">
+        <p class="history-row-content">{{history.content}}</p>
+        <p class="history-row-time-passed">{{history.time_passed}}</p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <div style="height: 20px"></div>
+
+  <mat-form-field style="width: 100%" appearance="outline">
     <mat-label>Clipboard</mat-label>
     <textarea matInput [ngModel]="textAreaContent" [cdkTextareaAutosize]="true"
-              (keyup)="contentChanged = true" placeholder="Ex. It makes me feel..."></textarea>
+              (input)="changeContent($event)" placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
 
   <div *ngIf="contentChanged" style="margin-bottom: 15px">
@@ -21,21 +40,5 @@
     </button>
   </div>
 
-  <div style="height: 20px"></div>
 
-  <mat-expansion-panel (opened)="loadHistory()" (closed)="showingHistory = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title *ngIf="!showingHistory">
-        Clipboard History
-      </mat-panel-title>
-      <mat-panel-title *ngIf="showingHistory">
-        Click to copy
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <div id="histories">
-      <div id="history-row" *ngFor="let history of clipboardHistory" (click)="copyToClipboard(history)">
-        <p id="history-row-content">{{history}}</p>
-      </div>
-    </div>
-  </mat-expansion-panel>
 </main>
