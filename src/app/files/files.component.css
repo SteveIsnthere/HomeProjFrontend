@@ -1,0 +1,28 @@
+main{
+
+}
+
+#top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#delete-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+#download-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+#upload-button {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

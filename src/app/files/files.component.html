@@ -1,16 +1,20 @@
-<h2>File Management</h2>
+<main>
+  <mat-selection-list #fileList (selectionChange)="onFileListSelectionChange(fileList.selectedOptions.selected)">
+    <mat-list-option *ngFor="let file of files"
+                     [value]="file.file_id">
+      <mat-icon matListItemIcon>{{fileIcon(file.file_name)}}</mat-icon>
+      <div matListItemTitle>{{file.file_name}}</div>
+      <div matListItemLine>{{file.time_passed}}</div>
+    </mat-list-option>
+  </mat-selection-list>
 
-<div>
-  <input type="file" (change)="onFileSelected($event)" />
-  <button (click)="onUpload()" [disabled]="!selectedFile">Upload</button>
-</div>
+  <ng-container *ngIf="selectedFileIds.length > 0">
+    <button id="delete-button" mat-raised-button color="accent" (click)="deleteAll()">Delete</button>
+    <button id="download-button" mat-raised-button color="warn" (click)="downloadAll()">Download</button>
+  </ng-container>
 
-<div *ngIf="files.length > 0">
-  <h3>Files:</h3>
-  <ul>
-    <li *ngFor="let file of files">
-      {{ file }}
-      <button (click)="onDownload(file)">Download</button>
-    </li>
-  </ul>
-</div>
+  <button *ngIf="selectedFileIds.length == 0" id="upload-button" mat-fab color="primary" (click)="fileInput.click()">
+    <mat-icon>upload</mat-icon>
+  </button>
+  <input hidden type="file" multiple #fileInput (change)="onFileToUploadSelected($event)"/>
+</main>

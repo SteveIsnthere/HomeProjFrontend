@@ -12,6 +12,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { FilesComponent } from './files/files.component';
+import {MatListModule} from "@angular/material/list";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FilesComponent } from './files/files.component';
     MatIconModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatListModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

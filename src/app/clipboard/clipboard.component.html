@@ -1,5 +1,5 @@
 <main>
-  <mat-expansion-panel (opened)="loadHistory()" (closed)="showingHistory = false">
+  <mat-expansion-panel (opened)="loadHistory()" (closed)="closeHistory()">
     <mat-expansion-panel-header>
       <mat-panel-title *ngIf="!showingHistory">
         Clipboard History
@@ -8,12 +8,14 @@
         Click to copy
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <div id="histories">
-      <div class="history-row" *ngFor="let history of clipboardHistory" (click)="copyToClipboard(history.content)">
-        <p class="history-row-content">{{history.content}}</p>
-        <p class="history-row-time-passed">{{history.time_passed}}</p>
-      </div>
-    </div>
+
+    <mat-list>
+      <mat-list-item *ngFor="let history of clipboardHistory"
+                     (click)="copyToClipboard(history.content)">
+        <div class="history-row" matListItemTitle>{{history.content}}</div>
+        <div matListItemLine style="font-size: x-small;color: bisque;text-align: end">{{history.time_passed}}</div>
+      </mat-list-item>
+    </mat-list>
   </mat-expansion-panel>
 
   <div style="height: 20px"></div>
@@ -39,6 +41,5 @@
       <mat-icon>content_paste</mat-icon>
     </button>
   </div>
-
 
 </main>

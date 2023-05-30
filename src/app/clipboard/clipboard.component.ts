@@ -34,6 +34,11 @@ export class ClipboardComponent implements OnInit {
     });
   }
 
+  closeHistory() {
+    this.showingHistory = false;
+    this.clipboardHistory = [];
+  }
+
   cut() {
     this.copyToClipboard(this.textAreaContent);
     this.textAreaContent = '';
