@@ -67,6 +67,7 @@ export class FilesComponent implements OnInit {
         }
         a.click();
         window.URL.revokeObjectURL(url);
+        this.selectedFileIds = [];
       },
       (error) => {
         console.error('Error downloading file:', error);
@@ -97,7 +98,6 @@ export class FilesComponent implements OnInit {
     for (const fileId of this.selectedFileIds) {
       this.download(fileId);
     }
-    this.selectedFileIds = [];
   }
 
   getFileList() {
