@@ -55,6 +55,7 @@ export class FilesComponent implements OnInit {
   download(fileId: number) {
     this.http.get(env.apiEndPoint + '/files/download/' + fileId.toString(), {responseType: 'blob'}).subscribe(
       (response) => {
+        this.selectedFileIds = this.selectedFileIds.filter(id => id !== fileId);
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
         a.href = url;
@@ -77,6 +78,7 @@ export class FilesComponent implements OnInit {
   delete(fileId: number) {
     this.http.delete(env.apiEndPoint + '/files/delete/' + fileId.toString()).subscribe(
       () => {
+        this.selectedFileIds = this.selectedFileIds.filter(id => id !== fileId);
         this.getFileList();
         console.log('File deleted successfully:', fileId);
       },
@@ -87,14 +89,12 @@ export class FilesComponent implements OnInit {
   }
 
   deleteAll() {
-    this.selectedFileIds = [];
     for (const fileId of this.selectedFileIds) {
       this.delete(fileId);
     }
   }
 
   downloadAll() {
-    this.selectedFileIds = [];
     for (const fileId of this.selectedFileIds) {
       this.download(fileId);
     }
