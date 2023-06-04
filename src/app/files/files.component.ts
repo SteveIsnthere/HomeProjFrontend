@@ -13,6 +13,7 @@ export class FilesComponent implements OnInit {
   files: FileSchema[] = [];
   filesToUpload: File[] = [];
   selectedFileIds: number[] = [];
+  selectedOptions: MatListOption[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -68,6 +69,9 @@ export class FilesComponent implements OnInit {
         }
         a.click();
         window.URL.revokeObjectURL(url);
+        if (this.selectedFileIds.length === 0) {
+          this.selectedOptions = [];
+        }
       },
       (error) => {
         console.error('Error downloading file:', error);
@@ -79,8 +83,7 @@ export class FilesComponent implements OnInit {
     this.http.delete(env.apiEndPoint + '/files/delete/' + fileId.toString()).subscribe(
       () => {
         this.selectedFileIds = this.selectedFileIds.filter(id => id !== fileId);
-        this.getFileList();
-        console.log('File deleted successfully:', fileId);
+        this.files = this.files.filter(file => file.file_id !== fileId);
       },
       (error) => {
         console.error('Error deleting file:', error);

@@ -1,5 +1,5 @@
 <main>
-  <mat-selection-list #fileList (selectionChange)="onFileListSelectionChange(fileList.selectedOptions.selected)">
+  <mat-selection-list #fileList [(ngModel)]="selectedOptions" (selectionChange)="onFileListSelectionChange(fileList.selectedOptions.selected)">
     <mat-list-option *ngFor="let file of files"
                      [value]="file.file_id">
       <mat-icon matListItemIcon>{{fileIcon(file.file_name)}}</mat-icon>

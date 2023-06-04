@@ -24,9 +24,6 @@ export class ClipboardComponent implements OnInit {
   ngOnInit(): void {
     this.getLatestClipboardContent().subscribe((data) => {
       this.textAreaContent = data.content;
-      this.snackBar.open('Connected', 'Close', {
-        duration: 1000,
-      });
     });
   }
 
