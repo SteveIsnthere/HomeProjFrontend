@@ -15,4 +15,5 @@ main {
 
 .history-row {
   cursor: pointer;
+  max-width: 40em;
 }
