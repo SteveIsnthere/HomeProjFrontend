@@ -12,8 +12,10 @@ main {
   gap: 10px;
 }
 
+#history{
+  max-width: 80vw;
+}
 
 .history-row {
   cursor: pointer;
-  max-width: 60vw;
 }

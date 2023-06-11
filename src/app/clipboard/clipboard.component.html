@@ -9,7 +9,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <mat-list>
+    <mat-list id="history">
       <mat-list-item *ngFor="let history of clipboardHistory"
                      (click)="copyToClipboard(history.content)">
         <div class="history-row" matListItemTitle>{{history.content}}</div>

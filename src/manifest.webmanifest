@@ -1,8 +1,8 @@
 {
-  "name": "HomeProjFrontend",
-  "short_name": "HomeProjFrontend",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "HomeProj",
+  "short_name": "HomeProj",
+  "theme_color": "#303030",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
