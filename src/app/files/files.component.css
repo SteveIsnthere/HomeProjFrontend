@@ -1,4 +1,4 @@
-main{
+main {
 
 }
 
@@ -25,4 +25,10 @@ main{
   bottom: 20px;
   left: 20px;
   /*transform: translate(-50%, 0);*/
+}
+
+#reload-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }

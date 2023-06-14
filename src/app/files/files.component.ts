@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {env} from '../env';
 import {FileSchema} from "./FileSchema";
 import {MatListOption} from "@angular/material/list";
+import {MainService} from "../service/main.service";
 
 @Component({
   selector: 'app-files',
@@ -15,11 +16,22 @@ export class FilesComponent implements OnInit {
   selectedFileIds: number[] = [];
   selectedOptions: MatListOption[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private mainService: MainService) {
   }
 
   ngOnInit(): void {
+    this.reload();
+    this.mainService.reloadEvent.subscribe(() => {
+      this.reload()
+    })
+  }
+
+  reload() {
     this.getFileList();
+  }
+
+  triggerReloadEvent(){
+    this.mainService.refresh();
   }
 
   onFileListSelectionChange(event: MatListOption[]) {

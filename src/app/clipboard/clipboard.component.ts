@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {delay, Observable, of} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Clipboard, dummyClipboard} from "./Clipboard";
+import {MainService} from "../service/main.service";
 
 @Component({
   selector: 'app-clipboard',
@@ -17,11 +18,18 @@ export class ClipboardComponent implements OnInit {
   showingHistory = false;
   clipboardHistory: Clipboard[] = [];
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+  constructor(private http: HttpClient, private mainService: MainService, private snackBar: MatSnackBar) {
 
   }
 
   ngOnInit(): void {
+    this.reload()
+    this.mainService.reloadEvent.subscribe((msg: string) => {
+      this.reload()
+    })
+  }
+
+  reload() {
     this.getLatestClipboardContent().subscribe((data) => {
       this.textAreaContent = data.content;
     });
