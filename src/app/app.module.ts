@@ -15,6 +15,7 @@ import { FilesComponent } from './files/files.component';
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -22,25 +23,26 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ClipboardComponent,
     FilesComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    HttpClientModule,
-    MatIconModule,
-    MatExpansionModule,
-    MatSnackBarModule,
-    MatListModule,
-    MatCardModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule,
+        HttpClientModule,
+        MatIconModule,
+        MatExpansionModule,
+        MatSnackBarModule,
+        MatListModule,
+        MatCardModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        MatProgressBarModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

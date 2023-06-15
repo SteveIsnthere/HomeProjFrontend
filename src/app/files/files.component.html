@@ -1,4 +1,5 @@
 <main>
+  <mat-progress-bar mode="indeterminate" *ngIf="!finishedLoading"></mat-progress-bar>
   <mat-selection-list #fileList [(ngModel)]="selectedOptions"
                       (selectionChange)="onFileListSelectionChange(fileList.selectedOptions.selected)">
     <mat-list-option *ngFor="let file of files"

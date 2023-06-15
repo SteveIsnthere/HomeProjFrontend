@@ -15,6 +15,7 @@ export class FilesComponent implements OnInit {
   filesToUpload: File[] = [];
   selectedFileIds: number[] = [];
   selectedOptions: MatListOption[] = [];
+  finishedLoading: boolean = false;
 
   constructor(private http: HttpClient, private mainService: MainService) {
   }
@@ -129,9 +130,11 @@ export class FilesComponent implements OnInit {
       return;
     }
 
+    this.finishedLoading = false;
     this.http.get<FileSchema[]>(env.apiEndPoint + '/files/files').subscribe(
       (response) => {
         this.files = response;
+        this.finishedLoading = true;
       },
       (error) => {
         console.error('Error retrieving file list:', error);
