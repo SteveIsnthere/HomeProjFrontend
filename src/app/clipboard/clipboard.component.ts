@@ -5,6 +5,8 @@ import {delay, Observable, of} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Clipboard, dummyClipboard} from "./Clipboard";
 import {MainService} from "../service/main.service";
+import {MatDialog} from "@angular/material/dialog";
+import {HistoryComponent} from "./history/history.component";
 
 @Component({
   selector: 'app-clipboard',
@@ -15,16 +17,14 @@ import {MainService} from "../service/main.service";
 export class ClipboardComponent implements OnInit {
   contentChanged = false;
   textAreaContent = '';
-  showingHistory = false;
-  clipboardHistory: Clipboard[] = [];
 
-  constructor(private http: HttpClient, private mainService: MainService, private snackBar: MatSnackBar) {
+  constructor(private http: HttpClient, private mainService: MainService, private snackBar: MatSnackBar, public dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
     this.reload()
-    this.mainService.reloadEvent.subscribe((msg: string) => {
+    this.mainService.reloadEvent.subscribe(() => {
       this.reload()
     })
   }
@@ -33,18 +33,6 @@ export class ClipboardComponent implements OnInit {
     this.getLatestClipboardContent().subscribe((data) => {
       this.textAreaContent = data.content;
     });
-  }
-
-  loadHistory() {
-    this.showingHistory = true;
-    this.getClipboardHistory().subscribe((history) => {
-      this.clipboardHistory = history;
-    });
-  }
-
-  closeHistory() {
-    this.showingHistory = false;
-    this.clipboardHistory = [];
   }
 
   cut() {
@@ -87,24 +75,20 @@ export class ClipboardComponent implements OnInit {
     });
   }
 
-  getClipboardHistory(): Observable<Clipboard[]> {
-    if (env.dummyDataMode) {
-      // generate random history
-      let history: Clipboard[] = [];
-      for (let i = 0; i < 10; i++) {
-        // generate random sentence
-        history.push(dummyClipboard());
-      }
-      return of(history).pipe(delay(500));
-    }
-    return this.http.get<Clipboard[]>(env.apiEndPoint + '/clipboard/history');
-  }
 
   copyToClipboard(content: string) {
     navigator.clipboard.writeText(content).then(() => {
       this.snackBar.open('Copied to clipboard', 'Close', {
         duration: 1500,
       });
+    });
+  }
+
+  openHistory() {
+    const dialogRef = this.dialog.open(HistoryComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 }

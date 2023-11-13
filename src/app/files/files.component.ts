@@ -18,13 +18,13 @@ export class FilesComponent implements OnInit {
   finishedLoading: boolean = false;
 
   constructor(private http: HttpClient, private mainService: MainService) {
+    this.mainService.reloadEvent.subscribe(() => {
+      this.reload()
+    })
   }
 
   ngOnInit(): void {
     this.reload();
-    this.mainService.reloadEvent.subscribe(() => {
-      this.reload()
-    })
   }
 
   reload() {
