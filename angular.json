@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "HomeProjFrontend:build:production"
+              "buildTarget": "HomeProjFrontend:build:production"
             },
             "development": {
-              "browserTarget": "HomeProjFrontend:build:development"
+              "buildTarget": "HomeProjFrontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "HomeProjFrontend:build"
+            "buildTarget": "HomeProjFrontend:build"
           }
         },
         "test": {
